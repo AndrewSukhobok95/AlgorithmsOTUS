@@ -3,7 +3,7 @@ package Assignment0_Comb;
 import AlgTesting.ITask;
 import AlgTesting.MyTester;
 
-public class FullAssignment {
+public class FullAssignment0 {
     public static void run() {
 
         System.out.println();
