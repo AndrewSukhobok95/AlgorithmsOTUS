@@ -1,4 +1,4 @@
-package Assignment0_Recursion;
+package Assignment0_Comb;
 
 import AlgTesting.ITask;
 
@@ -6,12 +6,12 @@ public class HappyTickets implements ITask {
     @Override
     public String Run(String[] data) {
         int N = Integer.parseInt(data[0]);
-        int answer = solveWithRecursion(N);
+        long answer = solveWithRecursion(N);
         return String.format("%s", answer);
     }
 
-    public static int solveWithRecursion(int N){
-        int n_lucky = 0;
+    public static long solveWithRecursion(int N){
+        long n_lucky = 0;
         for (int s=0; s<=9*N; s++){
             n_lucky += Nsn(s, N) * Nsn(s, N);
         }

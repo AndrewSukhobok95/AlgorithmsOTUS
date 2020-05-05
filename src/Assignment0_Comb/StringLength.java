@@ -1,4 +1,4 @@
-package Assignment0_Recursion;
+package Assignment0_Comb;
 
 import AlgTesting.ITask;
 

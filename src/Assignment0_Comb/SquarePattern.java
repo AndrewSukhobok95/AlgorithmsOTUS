@@ -1,9 +1,10 @@
-package Assignment0_Recursion;
+package Assignment0_Comb;
 
 import java.io.FileWriter;
 import java.io.IOException;
 
 public class SquarePattern {
+
     public static String getSquarePattern(int p){
         String squarePic = "";
         if (p>12 || p<1){
