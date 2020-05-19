@@ -1,4 +1,4 @@
-package Assignment0_Comb;
+package Assignment1_Comb;
 
 import java.io.FileWriter;
 import java.io.IOException;
