@@ -17,7 +17,7 @@ public class FactorArray<T> implements IArray<T> {
     }
 
     public FactorArray(int initCapacity, int factor) {
-        if (initCapacity==0) initCapacity++;
+        if (initCapacity<=0) initCapacity++;
         this.capacity = initCapacity;
         this.factor = factor;
         array = (T[])new Object[capacity];
@@ -46,7 +46,8 @@ public class FactorArray<T> implements IArray<T> {
         if (index > size)
             index = size;
         if (size==capacity)
-            addCapacity(index);
+            addCapacity();
+        shift(index);
         array[index] = item;
         size++;
     }
@@ -73,8 +74,7 @@ public class FactorArray<T> implements IArray<T> {
         array = newArray;
     }
 
-    private void addCapacity(int index) {
-        capacity += capacity * factor;
+    private void shift(int index) {
         T[] newArray = (T[])new Object[capacity];
         System.arraycopy(array, 0, newArray, 0, index);
         System.arraycopy(array, index, newArray, index+1, size-index);

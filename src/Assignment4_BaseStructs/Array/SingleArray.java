@@ -31,10 +31,11 @@ public class SingleArray<T> implements IArray<T> {
 
     @Override
     public void add(T item, int index) {
-        if (index >= size)
+        if (index > size)
             index = size;
         if (size==capacity)
-            addCapacity(index);
+            addCapacity();
+        shift(index);
         array[index] = item;
         size++;
     }
@@ -60,8 +61,7 @@ public class SingleArray<T> implements IArray<T> {
         array = newArray;
     }
 
-    private void addCapacity(int index) {
-        capacity++;
+    private void shift(int index) {
         T[] newArray = (T[])new Object[capacity];
         System.arraycopy(array, 0, newArray, 0, index);
         System.arraycopy(array, index, newArray, index+1, size-index);
