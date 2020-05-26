@@ -8,7 +8,7 @@ import Assignment4_BaseStructs.Array.MatrixArray;
 
 import java.util.Random;
 
-public class TestBaseStructs {
+public class TestArray {
 
     public static void main(String[] args) {
         System.out.println("SingleArray Testing:");

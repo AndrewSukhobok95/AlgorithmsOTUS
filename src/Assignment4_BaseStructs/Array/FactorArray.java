@@ -52,6 +52,14 @@ public class FactorArray<T> implements IArray<T> {
         size++;
     }
 
+    public void set(T item, int index) {
+        if (index > size)
+            index = size;
+        if (index < 0)
+            index = 0;
+        array[index] = item;
+    }
+
     @Override
     public T remove(int index) {
         if (index>=size)

@@ -1,7 +1,5 @@
 package Assignment4_BaseStructs.Array;
 
-import java.util.Arrays;
-
 public class SingleArray<T> implements IArray<T> {
     private T[] array;
     private int size = 0;
