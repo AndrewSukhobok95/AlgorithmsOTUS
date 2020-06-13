@@ -133,11 +133,14 @@ public class SpaceArray<T> implements IArray<T> {
 
     @Override
     public String toString() {
-        String s = "SpaceArray[" + "\n";
+        StringBuilder s = new StringBuilder();
+        s.append("SpaceArray[\n");
         for (int i=0; i<sizeArray.size(); i++) {
-            s += "    " + array.get(i).toString() + "\n";
+            s.append("    ");
+            s.append(array.get(i).toString());
+            s.append("\n");
         }
-        s += "]";
-        return s;
+        s.append("]");
+        return s.toString();
     }
 }

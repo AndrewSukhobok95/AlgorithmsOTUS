@@ -1,5 +1,13 @@
 package Assignment5_Sorting;
 
+/*
+Described parameters od algorithms:
+- Time Complexity
+- Stable (true): don't change the relative position of equal elements
+- Online (true): can work with part of the array (don't need full array)
+- Adaptive (true): if array is (almost) sorted, then sorting will be faster
+ */
+
 public class Sort {
 
     public static void SelectionSort(int[] array) {
@@ -9,7 +17,11 @@ public class Sort {
             Find local min (max) element in unsorted part
             Swap this element with first (last) element in unsorted part
             Repeat until all elements are sorted
-         */
+        Time Complexity: O(N^2)
+        Stable: False
+        Online: False
+        Adaptive: False
+        */
         for (int i=0; i<array.length; i++){
             int min_element = array[i];
             int min_ind = i;
@@ -30,7 +42,11 @@ public class Sort {
             Take first element in unsorted part
             Put this element in the appropriate place in sorted part
             Repeat until all elements are sorted
-         */
+        Time Complexity: O(N^2), O(N) - best
+        Stable: True
+        Online: True
+        Adaptive: True (O(N))
+        */
         for (int i=0; i<array.length; i++) {
             int cur_element = array[i];
             int j = i - 1;
@@ -60,11 +76,14 @@ public class Sort {
         /*
         Idea:
             Perform Insertion sort with gap until gap = 1
-        Time Complexity: O(N log(N)), O(N^2) - worst, O(N log^2(N)) - best
-        Stability: False
+        Time Complexity: O(N log(N))
+                         O(N^2) - worst
+                         O(N log^2(N)) - best
+                         (depends on gap type)
+        Stable: False
         Online: False
         Adaptive: False
-         */
+        */
         if (gap_type==0)
             for (int gap = array.length / 2; gap >= 1; gap = gap / 2)
                 gapInsertionSort(array, gap);
@@ -99,7 +118,11 @@ public class Sort {
             Change first element (root) (which is max) with last element
             Adjust the heap
             Repeat on the new heap without the last element
-         */
+        Time Complexity: O(N log(N))
+        Stable: False
+        Online: False
+        Adaptive: False
+        */
         int size = array.length;
         int start_index = size / 2 - 1;
 
