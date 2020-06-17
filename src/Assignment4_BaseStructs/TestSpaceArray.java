@@ -6,6 +6,10 @@ import java.util.Random;
 
 public class TestSpaceArray {
     public static void main(String[] args) {
+        testSpaceArray();
+    }
+
+    public static void testSpaceArray() {
         SpaceArray<Integer> sa = new SpaceArray<Integer>(4, 2);
         Random rn = new Random();
         for (int i=0; i<7; i++)
@@ -29,5 +33,6 @@ public class TestSpaceArray {
         sa.clear();
 
         System.out.println(sa);
+        System.out.println();
     }
 }

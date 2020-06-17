@@ -4,12 +4,17 @@ import Assignment4_BaseStructs.List.LinkedList;
 
 public class TestList {
     public static void main(String[] args) {
+        testListStructures();
+    }
+
+    public static void testListStructures() {
         LinkedList<Integer> ll = new LinkedList<>();
         testAddFL(ll, false);
         testAdd(ll, false);
         testGet(ll, false);
         testRemoveFL(ll, true);
         testGetFL(ll, false);
+        System.out.println();
     }
 
     public static void testAddFL(LinkedList<Integer> ll, boolean clear) {

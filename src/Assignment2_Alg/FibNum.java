@@ -2,8 +2,6 @@ package Assignment2_Alg;
 
 import AlgTesting.ITask;
 
-import java.math.BigInteger;
-
 public class FibNum implements ITask {
 
 //    public static BigInteger fibByMM(int input) {

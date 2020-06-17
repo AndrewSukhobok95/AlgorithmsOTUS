@@ -11,6 +11,10 @@ import java.util.Random;
 public class TestArray {
 
     public static void main(String[] args) {
+        testArrayStructures();
+    }
+
+    public static void testArrayStructures() {
         System.out.println("SingleArray Testing:");
         IArray<Integer> singleArray = new SingleArray<Integer>();
 
@@ -55,6 +59,7 @@ public class TestArray {
         testAddArray(singleArray, 10_000);
         testAddArray(factorArray, 10_000);
         testAddArray(matrixArray, 10_000);
+        System.out.println();
     }
 
     private static void testAddArray(IArray<Integer> array, int total) {

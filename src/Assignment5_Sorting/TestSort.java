@@ -4,6 +4,10 @@ import java.util.Random;
 
 public class TestSort {
     public static void main(String[] args) {
+        testAllSorting();
+    }
+
+    public static void testAllSorting() {
         System.out.println("Selection Sort:");
         int[] array = getRndArray(25);
         printArray(array);

@@ -17,8 +17,28 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
         return size;
     }
 
+    void increaseSize() {
+        size++;
+    }
+
+    void decreaseSize() {
+        size--;
+    }
+
     public boolean isEmpty() {
         return size==0;
+    }
+
+    Node<Key, Value> getRoot() {
+        return this.root;
+    }
+
+    void setRoot(Node<Key, Value> node) {
+        this.root = node;
+    }
+
+    boolean getPrintKey() {
+        return this.printKey;
     }
 
     public void insert(Key k) {
@@ -27,30 +47,11 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
 
     public void insert(Key k, Value v) {
         if (isEmpty()) {
-            root = new Node<>(k, v);
+            setRoot(new Node<>(k, v));
         } else {
-            insert(root, k, v);
+            setRoot(insert(root, k, v));
         }
-        size++;
-    }
-
-    private void insert(Node<Key, Value> currentNode, Key k, Value v) {
-        int comparisonResult = currentNode.getKey().compareTo(k);
-        if (comparisonResult==0) {
-            currentNode.setValue(v);
-        } else if (comparisonResult>0) {
-            if (currentNode.getLeft()==null) {
-                currentNode.setLeft(new Node<>(k, v, null, null, currentNode));
-            } else {
-                insert(currentNode.getLeft(), k, v);
-            }
-        } else {
-            if (currentNode.getRight()==null) {
-                currentNode.setRight(new Node<>(k, v, null, null, currentNode));
-            } else {
-                insert(currentNode.getRight(), k, v);
-            }
-        }
+        increaseSize();
     }
 
     public boolean search(Key k) {
@@ -61,10 +62,19 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
         return get(root, k);
     }
 
-    private Node<Key, Value> get(Node<Key, Value> current, Key k) {
-        if (current==null) {
+    public Node<Key, Value> remove(Key k) {
+        if (isEmpty()) {
             return null;
+        } else {
+            Node<Key, Value> nodeToRemove = get(k);
+            remove(nodeToRemove);
+            decreaseSize();
+            return nodeToRemove;
         }
+    }
+
+    Node<Key, Value> get(Node<Key, Value> current, Key k) {
+        if (current==null) return null;
         int comparisonResult = current.getKey().compareTo(k);
         if (comparisonResult==0) {
             return current;
@@ -75,24 +85,34 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
         }
     }
 
-    public Node<Key, Value> remove(Key k) {
-        if (isEmpty()) {
-            return null;
+    Node<Key, Value> insert(Node<Key, Value> currentNode, Key k, Value v) {
+        int comparisonResult = currentNode.getKey().compareTo(k);
+        if (comparisonResult==0) {
+            currentNode.setValue(v);
+        } else if (comparisonResult>0) {
+            if (currentNode.getLeft()==null) {
+                currentNode.setLeft(new Node<>(k, v, currentNode));
+            } else {
+                insert(currentNode.getLeft(), k, v);
+            }
         } else {
-            Node<Key, Value> nodeToRemove = get(k);
-            remove(nodeToRemove);
-            return nodeToRemove;
+            if (currentNode.getRight()==null) {
+                currentNode.setRight(new Node<>(k, v, currentNode));
+            } else {
+                insert(currentNode.getRight(), k, v);
+            }
         }
+        return root;
     }
 
-    private void remove(Node<Key, Value> node) {
+    void remove(Node<Key, Value> node) {
         if (node.getParent()==null) {
             Node<Key, Value> R = node.getRight();
             if (node.getLeft()!=null) {
-                root = node.getLeft();
+                setRoot(node.getLeft());
                 if (R!=null) insert(root, R);
             } else {
-                root = R;
+                setRoot(R);
             }
         } else {
             Node<Key, Value> P = node.getParent();
@@ -107,10 +127,9 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
         node.setLeft(null);
         node.setRight(null);
         node.setParent(null);
-        size--;
     }
 
-    private void insert(Node<Key, Value> parentNode, Node<Key, Value> insertNode) {
+    void insert(Node<Key, Value> parentNode, Node<Key, Value> insertNode) {
         int comparisonResult = parentNode.getKey().compareTo(insertNode.getKey());
         if (comparisonResult==0) {
             System.out.println("WARNING: Nodes with identical keys.");
@@ -136,20 +155,27 @@ public class BinaryTree<Key extends Comparable<Key>, Value> {
     public String toString() {
         String s = "BinaryTree{ ";
         s += toString(root, printKey);
-        s += "}";
+        s += " }";
         return s;
     }
 
-    private String toString(Node<Key, Value> node, boolean printKey) {
+    String toString(Node<Key, Value> node, boolean printKey) {
         if (node==null) return "";
         String s = "";
         if (printKey) {
-            s += node.getKey() + " ";
+            s += node.getKey();
         } else {
-            s += node.getValue() + " ";
+            s += node.getValue();
         }
-        s += toString(node.getLeft(), printKey);
-        s += toString(node.getRight(), printKey);
+        String sL = toString(node.getLeft(), printKey);
+        String sR = toString(node.getRight(), printKey);
+        if (!(sL.equals("") && sR.equals(""))) {
+            s += " L{";
+            s += sL;
+            s += "} R{";
+            s += sR;
+            s += "}";
+        }
         return s;
     }
 }
