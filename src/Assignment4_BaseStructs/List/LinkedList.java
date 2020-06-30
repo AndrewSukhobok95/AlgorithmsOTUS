@@ -1,7 +1,5 @@
 package Assignment4_BaseStructs.List;
 
-
-
 public class LinkedList<T> implements IList<T> {
     private int size = 0;
     private Node<T> first;
@@ -38,7 +36,7 @@ public class LinkedList<T> implements IList<T> {
 
     @Override
     public void addFirst(T item) {
-        Node<T> newNode = new Node<T>(item);
+        Node<T> newNode = new Node<>(item);
         newNode.setPrevious(null);
         if (isEmpty()) {
             newNode.setNext(null);
@@ -53,7 +51,7 @@ public class LinkedList<T> implements IList<T> {
 
     @Override
     public void addLast(T item) {
-        Node<T> newNode = new Node<T>(item);
+        Node<T> newNode = new Node<>(item);
         newNode.setNext(null);
         if (isEmpty()) {
             newNode.setPrevious(null);
@@ -183,7 +181,7 @@ public class LinkedList<T> implements IList<T> {
         String s = "LinkedList[ ";
         Node current = first;
         while (current != null) {
-            s += current.getValue() + " ";
+            s += current.getValue().toString() + " ";
             current = current.getNext();
         }
         s += "]";
