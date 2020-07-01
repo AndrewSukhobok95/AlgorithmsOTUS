@@ -1,12 +1,13 @@
 package Assignment9_HashTables;
 
-import Assignment4_BaseStructs.List.LinkedList;
+import Assignment9_HashTables.List.HTLinkedList;
+import Assignment9_HashTables.List.Node;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 
 public class HashTableChain<K,V> {
-    private LinkedList<HTElement<K, V>>[] table;
+    private HTLinkedList<K, V>[] table;
     private int size = 0;
     private int n;
 
@@ -14,51 +15,60 @@ public class HashTableChain<K,V> {
         this(10);
     }
 
-    public HashTableChain(int n) {
+    private int roundN(int n) {
         if (n%10!=0) n = (int) pow(10, String.valueOf(n).length());
-        this.n = n;
-        table = new LinkedList[this.n];
+        return n;
+    }
+
+    public HashTableChain(int n) {
+        this.n = roundN(n);
+        table = new HTLinkedList[this.n];
         for (int i=0; i<n; i++)
-            table[i] = new LinkedList<>();
+            table[i] = new HTLinkedList<>();
+    }
+
+    public void rehashTable(int newN) {
+        newN = roundN(newN);
+        HTLinkedList<K, V>[] newTable = new HTLinkedList[newN];
+        for (int i=0; i<newN; i++)
+            newTable[i] = new HTLinkedList<>();
+
+        for (int i=0; i<n; i++) {
+            Node<K, V> current = table[i].getFirst();
+            while (current!=null) {
+                K key = current.getKey();
+                int index = keyIndex(key, newN);
+                newTable[index].addFirst(key, current.getValue());
+                current = current.getNext();
+            }
+        }
+        this.table = newTable;
+        this.n = newN;
     }
 
     public int size() {
         return size;
     }
 
-    private int keyIndex(K key) {
+    private int keyIndex(K key, int n) {
         int hash = key.hashCode();
         return abs(hash % n);
     }
 
     public void insert(K key, V value) {
-        int index = keyIndex(key);
-        table[index].addFirst(new HTElement<>(key, value));
+        int index = keyIndex(key, this.n);
+        table[index].addFirst(key, value);
         size++;
     }
 
     public V delete(K key) {
-        int index = keyIndex(key);
-        LinkedList<HTElement<K, V>> ll = table[index];
-        if (ll.isEmpty()) return null;
-        //TODO
-        return null;
+        int index = keyIndex(key, this.n);
+        return table[index].remove(key);
     }
 
     public V search(K key) {
-        //TODO
-        //redo!
-        int index = keyIndex(key);
-        LinkedList<HTElement<K, V>> ll = table[index];
-        if (ll.isEmpty()) return null;
-        HTElement<K, V> hte;
-        for (int i=0; i<ll.size(); i++) {
-            hte = ll.get(i);
-            if (hte.getKey().equals(key)) {
-                return hte.getValue();
-            }
-        }
-        return null;
+        int index = keyIndex(key, this.n);
+        return table[index].get(key);
     }
 
     @Override
@@ -69,40 +79,5 @@ public class HashTableChain<K,V> {
         }
         s += "]";
         return s;
-    }
-
-    static class HTElement<K,V> {
-        private K key;
-        private V value;
-
-        public HTElement() {
-            this(null, null);
-        }
-
-        public HTElement(K key, V value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public K getKey() {
-            return key;
-        }
-
-        public void setKey(K key) {
-            this.key = key;
-        }
-
-        public V getValue() {
-            return value;
-        }
-
-        public void setValue(V value) {
-            this.value = value;
-        }
-
-        @Override
-        public String toString() {
-            return "(" + key + ", " + value + ")";
-        }
     }
 }

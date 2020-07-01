@@ -4,6 +4,7 @@ import Assignment3_Bit.FullAssignment3;
 import Assignment4_BaseStructs.FullAssignment4;
 import Assignment5_Sorting.FullAssignment5;
 import Assignment7_TreeStructures.FullAssignment7;
+import Assignment9_HashTables.FullAssignment9;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,5 +14,6 @@ public class Main {
         //FullAssignment4.run();
         //FullAssignment5.run();
         //FullAssignment7.run();
+        FullAssignment9.run();
     }
 }
