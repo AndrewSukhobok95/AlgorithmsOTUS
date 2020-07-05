@@ -1,11 +1,11 @@
 package Assignment9_HashTables.List;
 
-public class HTLinkedList<K,V> {
+public class LinkedList<K,V> {
     private int size = 0;
     private Node<K,V> first;
     private Node<K,V> last;
 
-    public HTLinkedList() {
+    public LinkedList() {
         first = null;
         last = null;
     }
@@ -14,9 +14,7 @@ public class HTLinkedList<K,V> {
         return size;
     }
 
-    public boolean isEmpty() {
-        return last == null;
-    }
+    public boolean isEmpty() { return last == null; }
 
     public V get(K key) {
         Node<K,V> current = find(key);

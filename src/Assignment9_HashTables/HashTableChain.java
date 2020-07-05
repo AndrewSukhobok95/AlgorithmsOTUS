@@ -1,13 +1,13 @@
 package Assignment9_HashTables;
 
-import Assignment9_HashTables.List.HTLinkedList;
+import Assignment9_HashTables.List.LinkedList;
 import Assignment9_HashTables.List.Node;
 
 import static java.lang.Math.abs;
 import static java.lang.Math.pow;
 
 public class HashTableChain<K,V> {
-    private HTLinkedList<K, V>[] table;
+    private LinkedList<K, V>[] table;
     private int size = 0;
     private int n;
 
@@ -22,16 +22,16 @@ public class HashTableChain<K,V> {
 
     public HashTableChain(int n) {
         this.n = roundN(n);
-        table = new HTLinkedList[this.n];
+        table = new LinkedList[this.n];
         for (int i=0; i<n; i++)
-            table[i] = new HTLinkedList<>();
+            table[i] = new LinkedList<>();
     }
 
     public void rehashTable(int newN) {
         newN = roundN(newN);
-        HTLinkedList<K, V>[] newTable = new HTLinkedList[newN];
+        LinkedList<K, V>[] newTable = new LinkedList[newN];
         for (int i=0; i<newN; i++)
-            newTable[i] = new HTLinkedList<>();
+            newTable[i] = new LinkedList<>();
 
         for (int i=0; i<n; i++) {
             Node<K, V> current = table[i].getFirst();

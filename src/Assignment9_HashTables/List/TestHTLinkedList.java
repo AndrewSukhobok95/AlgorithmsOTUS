@@ -2,7 +2,7 @@ package Assignment9_HashTables.List;
 
 public class TestHTLinkedList {
     public static void main(String[] args) {
-        HTLinkedList<String, Integer> ll = new HTLinkedList<>();
+        LinkedList<String, Integer> ll = new LinkedList<>();
         ll.addFirst("c", 3);
         ll.addFirst("b", 2);
         ll.addFirst("a", 1);
