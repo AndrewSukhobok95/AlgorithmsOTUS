@@ -1,7 +1,7 @@
 package Assignment4_BaseStructs.List;
 
 public class Queue<T> {
-    private LinkedList<T> queue = new LinkedList<T>();
+    private LinkedList<T> queue = new LinkedList<>();
 
     public void enqueue(T value){
         queue.addFirst(value);

@@ -6,6 +6,8 @@ import Assignment5_Sorting.FullAssignment5;
 import Assignment7_TreeStructures.FullAssignment7;
 import Assignment9_HashTables.FullAssignment9;
 import Assignment10_GraphTopSort_Demurkon.FullAssignment10;
+import Assignment11_Graph_MinSkelet.FullAssignment11;
+import Assignment12_Graph_ShortPath.FullAssignment12;
 
 public class Main {
     public static void main(String[] args) {
@@ -16,6 +18,8 @@ public class Main {
         //FullAssignment5.run();
         //FullAssignment7.run();
         //FullAssignment9.run();
-        FullAssignment10.run();
+        //FullAssignment10.run();
+        FullAssignment11.run();
+        FullAssignment12.run();
     }
 }
