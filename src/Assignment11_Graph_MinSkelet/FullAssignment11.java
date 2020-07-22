@@ -5,3 +5,6 @@ public class FullAssignment11 {
         TestKaruskal.testKaruskalAlgorithm();
     }
 }
+
+
+

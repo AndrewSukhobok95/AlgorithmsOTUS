@@ -1,11 +1,11 @@
-package Assignment11_Graph_MinSkelet;
+package Assignment11_Graph_MinSkelet.graphUtils;
 
 public class Edge implements Comparable<Edge> {
     private Vertex v1;
     private Vertex v2;
-    private int weight;
+    private double weight;
 
-     Edge(Vertex v1, Vertex v2, int weight) {
+     public Edge(Vertex v1, Vertex v2, int weight) {
          this.v1 = v1;
          this.v2 = v2;
          this.weight = weight;
@@ -19,8 +19,12 @@ public class Edge implements Comparable<Edge> {
         return v2;
     }
 
-    public int getWeight() {
+    public double getWeight() {
         return weight;
+    }
+
+    public boolean hasVertex(int vertexKey) {
+        return vertexKey == v1.getKey() || vertexKey == v2.getKey();
     }
 
     @Override
