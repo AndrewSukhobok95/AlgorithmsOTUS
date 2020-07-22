@@ -10,12 +10,12 @@ public class FullAssignment2 {
         System.out.println("Running all tasks from Assignment 1.");
         System.out.println("Tasks:");
         System.out.println("+ Tasks 1: GCD.");
-        System.out.println("  Part 1: GCD through Euclid algorithm with reminders.");
-        System.out.println("  Part 2: GCD through bit operations (division by 2).");
+        System.out.println("    Part 1: GCD through Euclid algorithm with reminders.");
+        System.out.println("    Part 2: GCD through bit operations (division by 2).");
         System.out.println("+ Tasks 2: Fast power of number.");
-        System.out.println("  Part 1: Simple method with multiplication.");
-        System.out.println("  Part 2: Method that uses the power of 2.");
-
+        System.out.println("    Part 1: Simple method with multiplication.");
+        System.out.println("    Part 2: Method that uses the power of 2.");
+        System.out.println("+ Tasks 4: Fibonacci sequence by matrix multiplication.");
 
         System.out.println();
         System.out.println("Task 1: Part 1.");
@@ -40,5 +40,15 @@ public class FullAssignment2 {
         ITask task22 = new PowAlg("POWER_OF_TWO");
         MyTester tester22 = new MyTester(task22, "/home/andrey/IdeaProjects/AlgorithmsOTUS/data/2_alg/3.Power");
         tester22.RunTests();
+
+        System.out.println();
+        System.out.println("Task 4");
+        ITask task4 = new FibNum();
+        MyTester tester4 = new MyTester(task4, "/home/andrey/IdeaProjects/AlgorithmsOTUS/data/2_alg/4.Fibo");
+        tester4.RunTests();
+    }
+
+    public static void main(String[] args) {
+        run();
     }
 }
